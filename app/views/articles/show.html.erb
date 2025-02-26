@@ -2,14 +2,9 @@
 
 <p><%= @article.body %></p>
 
-<% if user_signed_in? %>
-  <ul>
-    <li><%= link_to "Edit", edit_article_path(@article) %></li>
-    <li><%= link_to "Destroy", article_path(@article), data: {
-                      turbo_method: :delete,
-                      turbo_confirm: "Are you sure?"
-                    } %></li>
-  </ul>
+<% if @article.user == current_user %>
+  <%= link_to 'Editar', edit_article_path(@article) %> |
+  <%= link_to 'Excluir', @article, method: :delete, data: { confirm: "Tem certeza?" } %>
 <% end %>
 
 <h2>Comments</h2>

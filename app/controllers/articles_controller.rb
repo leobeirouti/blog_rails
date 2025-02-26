@@ -1,9 +1,5 @@
 class ArticlesController < ApplicationController
-  # http_basic_authenticate_with name: "dhh", password: "secret", except: [ :index, :show ]
-
-  def index
-    @articles = Article.all
-  end
+  before_action :authorize_user, only: [ :edit, :update, :destroy ]
 
   def index
     @articles = Article.all
@@ -18,10 +14,10 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(article_params)
+    @article = current_user.articles.build(article_params)
 
     if @article.save
-      redirect_to @article
+      redirect_to @article, notice: "Artigo criado com sucesso!"
     else
       render :new, status: :unprocessable_entity
     end
@@ -49,7 +45,15 @@ class ArticlesController < ApplicationController
   end
 
   private
-    def article_params
-      params.require(:article).permit(:title, :body, :status)
+
+  def authorize_user
+    @article = Article.find(params[:id])
+    unless @article.user == current_user
+      redirect_to articles_path, alert: "Você não tem permissão para modificar este artigo."
     end
+  end
+
+  def article_params
+    params.require(:article).permit(:title, :body, :status)
+  end
 end
