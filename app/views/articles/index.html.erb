@@ -1,6 +1,10 @@
 <div style="margin-bottom: 20px;">
-  <%= link_to "Cadastrar", new_user_registration_path, class: "btn btn-primary" %>
-  <%= link_to "Login", new_user_session_path, class: "btn btn-secondary", style: "margin-left: 10px;" %>
+  <% if user_signed_in? %>
+    <%= link_to "Sair", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
+  <% else %>
+    <%= link_to "Cadastrar", new_user_registration_path, class: "btn btn-primary" %>
+    <%= link_to "Login", new_user_session_path, class: "btn btn-secondary", style: "margin-left: 10px;" %>
+  <% end %>
 </div>
 
 <h1>Articles</h1>
@@ -17,4 +21,6 @@ Este blog tem <%= Article.public_count %> artigos e contando!
   <% end %>
 </ul>
 
-<%= link_to "Novo Artigo", new_article_path %>
+<% if user_signed_in? %>
+  <%= link_to "Novo Artigo", new_article_path, class: "btn btn-success" %>
+<% end %>
