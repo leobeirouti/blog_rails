@@ -16,13 +16,16 @@
     </div>
   
     <div>
-      <%= form.submit %>
+      <%= form.submit %><br>
     </div>
 
     <div>
+      
       <%= form.label :status %><br>
       <%= form.select :status, Visible::VALID_STATUSES, selected: article.status || 'public' %>
     </div>
+
+    <%= link_to 'Voltar Inicio', root_path, class: 'button' %>
 
   <% end %>
   

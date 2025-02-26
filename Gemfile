@@ -19,6 +19,13 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+# Gem Pg is the Ruby interface to the PostgreSQL RDBMS
+gem "pg"
+
+# Barebones two-factor authentication with Devise
+gem "devise"
+gem "devise-two-factor"
+
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
