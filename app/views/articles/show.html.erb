@@ -13,6 +13,11 @@
 <h2>Comments</h2>
 <%= render @article.comments %>
 
-<h2>Add a comment:</h2>
-<%= render "comments/form", article: @article %>
+<% if user_signed_in? %>
+	<h2>Add a comment:</h2>
+	<%= render "comments/form", article: @article %>
+<% else %>
+  <p>Você precisa estar logado para comentar.</p>
+  <%= link_to "Fazer login", new_user_session_path %>
+<% end %>
 <%= link_to 'Voltar Inicio', root_path, class: 'button' %>
