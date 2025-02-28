@@ -26,6 +26,11 @@
   </head>
 
   <body>
+
+    <% if user_signed_in? %>
+     <p>Logado como: <%= current_user.email %></p>
+    <% end %>
+    
     <%= yield %>
   </body>
 </html>
