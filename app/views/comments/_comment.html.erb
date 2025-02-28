@@ -1,7 +1,7 @@
 <% unless comment.archived? %>
   <p>
-    <strong>Commenter:</strong>
-    <%= comment.commenter %>
+    <strong>User:</strong>
+    <%= comment.user.email %>
   </p>
 
   <p>
