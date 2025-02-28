@@ -9,11 +9,11 @@
     <%= comment.body %>
   </p>
 
-  <% if user_signed_in? %>
+  <% if user_signed_in? && comment.user == current_user %>
     <p>
       <%= link_to "Destroy Comment", [comment.article, comment], data: {
                   turbo_method: :delete,
-                  turbo_confirm: "Are you sure?"
+                  turbo_confirm: "Tem certeza que deseja excluir?"
                   } %>
     </p>
   <% end %>
